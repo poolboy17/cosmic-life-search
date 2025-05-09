@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg cosmic-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="{{ "/" | relURL }}">
+      <span class="cosmic-logo-text">{{ .Site.Title }}</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link {{ if .IsHome }}active{{ end }}" href="{{ "/" | relURL }}">HOME</a>
+        </li>
+        
+        <!-- Main categories in navigation -->
+        <li class="nav-item">
+          <a class="nav-link" href="/categories/exoplanets/">EXOPLANETS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/categories/ancient-astronauts/">ANCIENT ASTRONAUTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/categories/ufo-incidents/">UFO INCIDENTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/categories/seti/">SETI</a>
+        </li>
+        
+        <!-- Site pages -->
+        <li class="nav-item">
+          <a class="nav-link" href="/blog/">BLOG</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about/">ABOUT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact/">CONTACT</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

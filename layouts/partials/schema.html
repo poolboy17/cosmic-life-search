@@ -1,0 +1,65 @@
+{{ if eq .Layout "post" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  "headline": "{{ .Title }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}",
+  "image": "{{ with .Params.image }}{{ . | absURL }}{{ else }}{{ .Site.Params.ogImage | absURL }}{{ end }}",
+  "author": {
+    "@type": "Organization",
+    "name": "Cosmic Life Search"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cosmic Life Search",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ "images/logo.svg" | absURL }}",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05-07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}"
+  {{ with .Params.categories }},
+  "keywords": "{{ delimit . ", " }}"
+  {{ end }}
+}
+</script>
+{{ end }}
+
+<!-- Website Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ .Site.BaseURL }}search/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- Organization Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Cosmic Life Search",
+  "url": "{{ .Site.BaseURL }}",
+  "logo": "{{ "images/logo.svg" | absURL }}",
+  "sameAs": [
+    "https://twitter.com/cosmiclifesearch",
+    "https://facebook.com/cosmiclifesearch",
+    "https://instagram.com/cosmiclifesearch"
+  ]
+}
+</script>

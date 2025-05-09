@@ -1,0 +1,38 @@
+User-agent: *
+Allow: /
+
+# Disallow admin area
+Disallow: /adminadmin/
+Disallow: /admin/
+
+# Disallow validation pages and script outputs
+Disallow: /validation-results/
+Disallow: /js_css_analysis/
+Disallow: /html_validation/
+Disallow: /image_validation/
+Disallow: /js_css_analysis-*/
+Disallow: /html_validation-*/
+Disallow: /image_validation-*/
+
+# Disallow temporary and utility folders
+Disallow: /raw-data/
+Disallow: /temp/
+Disallow: /test/
+Disallow: /debug/
+Disallow: /temp_extract/
+Disallow: /markdown/
+Disallow: /markdown_fixed/
+
+# Disallow utility formats and pages
+Disallow: /*.json$
+Disallow: /tags/
+Disallow: /categories/
+Disallow: /*?*
+
+# Allow sitemap files
+Allow: /sitemap.xml
+Allow: /video-sitemap.xml
+
+# Sitemap declarations
+Sitemap: https://cosmiclifesearch.com/sitemap.xml
+Sitemap: https://cosmiclifesearch.com/video-sitemap.xml

@@ -1,0 +1,42 @@
+{
+  "pillars_of_creation_43512507.jpg": {
+    "title": "Pillars of Creation",
+    "description": "Webb's near-infrared view of the iconic Pillars of Creation, where new stars are forming within dense clouds of gas and dust.",
+    "credit": "ESA/Webb",
+    "source_url": "https://esawebb.org/media/archives/images/screen/weic2212a.jpg",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "date_downloaded": "2025-05-06"
+  },
+  "carina_nebula_6e6e8467.jpg": {
+    "title": "Carina Nebula",
+    "description": "Webb's detailed view of the Carina Nebula revealing new features in this vast star-forming region.",
+    "credit": "ESA/Webb",
+    "source_url": "https://esawebb.org/media/archives/images/screen/weic2210a.jpg",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "date_downloaded": "2025-05-06"
+  },
+  "southern_ring_nebula_30427bd7.jpg": {
+    "title": "Southern Ring Nebula",
+    "description": "Webb's infrared vision showing the Southern Ring Nebula, a planetary nebula created by a dying star.",
+    "credit": "ESA/Webb",
+    "source_url": "https://esawebb.org/media/archives/images/screen/weic2205a.jpg",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "date_downloaded": "2025-05-06"
+  },
+  "deep_field_smacs_0723_e1985533.jpg": {
+    "title": "Deep Field SMACS 0723",
+    "description": "Webb's deepest and sharpest infrared image of the distant universe to date, showing galaxy cluster SMACS 0723.",
+    "credit": "ESA/Webb",
+    "source_url": "https://esawebb.org/media/archives/images/screen/weic2201a.jpg",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "date_downloaded": "2025-05-06"
+  },
+  "cartwheel_galaxy_1944967d.jpg": {
+    "title": "Cartwheel Galaxy",
+    "description": "Webb's detailed image of the Cartwheel Galaxy, a rare ring galaxy formed by a collision between two galaxies.",
+    "credit": "ESA/Webb",
+    "source_url": "https://esawebb.org/media/archives/images/screen/weic2208a.jpg",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "date_downloaded": "2025-05-06"
+  }
+}

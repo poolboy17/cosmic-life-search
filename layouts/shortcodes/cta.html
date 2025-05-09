@@ -1,0 +1,88 @@
+<div class="cosmic-cta">
+    <div class="cta-inner">
+        {{ .Inner | markdownify }}
+    </div>
+</div>
+
+<style>
+.cosmic-cta {
+    background: linear-gradient(135deg, #1a1a4a 0%, #0a0a20 100%);
+    border: 1px solid #3f51b5;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(126, 87, 194, 0.2);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cosmic-cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3f51b5, #7e57c2, #3f51b5);
+    z-index: 1;
+    animation: glow 3s infinite;
+}
+
+@keyframes glow {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.cta-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.cosmic-cta p {
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.cosmic-cta a {
+    display: inline-block;
+    background: linear-gradient(45deg, #7040FF, #BD4BE5);
+    color: white !important;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(112, 64, 255, 0.4);
+}
+
+.cosmic-cta a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(112, 64, 255, 0.6);
+    background: linear-gradient(45deg, #8351FF, #CE5CF6);
+}
+
+.cosmic-cta strong {
+    color: #90caf9;
+}
+
+@media (max-width: 576px) {
+    .cosmic-cta {
+        padding: 20px 16px;
+    }
+    
+    .cosmic-cta p {
+        font-size: 1rem;
+    }
+    
+    .cosmic-cta a {
+        width: 100%;
+        padding: 14px;
+    }
+}
+</style>

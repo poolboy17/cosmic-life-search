@@ -1,0 +1,37 @@
+<div class="post-card">
+  <div class="post-card-inner">
+    {{ if .Params.image }}
+    <div class="post-thumbnail">
+      <img 
+        src="{{ .Params.image }}" 
+        alt="{{ with .Params.image_alt }}{{ . }}{{ else }}{{ .Title }}{{ end }}" 
+        class="img-fluid card-img" 
+        loading="lazy"
+        sizes="(max-width: 576px) 95vw, (max-width: 992px) 45vw, 350px"
+        width="450" 
+        height="250">
+        {{/* Hidden span with alt text to ensure it's available for accessibility tools */}}
+        <span class="sr-only">{{ with .Params.image_alt }}{{ . }}{{ else }}{{ .Title }}{{ end }}</span>
+    </div>
+    {{ end }}
+    <div class="post-details">
+      <h3 class="post-title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h3>
+      <div class="post-meta">
+        <span><i class="bi bi-calendar"></i> {{ .Date.Format "Jan 2, 2006" }}</span>
+        {{ with .Params.categories }}
+        <span><i class="bi bi-folder"></i> 
+          {{ range $index, $category := . }}
+          <a href="{{ printf "/categories/%s/" $category | urlize | relURL }}">{{ $category }}</a>{{ if ne (add $index 1) (len .) }}, {{ end }}
+          {{ end }}
+        </span>
+        {{ end }}
+      </div>
+      <div class="post-summary">
+        {{ .Summary | plainify | truncate 150 }}
+      </div>
+      <a href="{{ .RelPermalink }}" class="read-more">Read More →</a>
+    </div>
+  </div>
+</div>

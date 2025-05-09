@@ -1,0 +1,13 @@
+{{/* ESA Webb Image Shortcode with Attribution */}}
+{{ $filename := .Get "filename" }}
+{{ $alt := .Get "alt" | default "Space image from ESA/Webb telescope" }}
+{{ $class := .Get "class" | default "img-fluid" }}
+{{ $metadata := index site.Data.esa_metadata $filename }}
+
+<figure class="esa-image-figure">
+  <img src="/images/esa-webb/{{ $filename }}" alt="{{ $alt }}" class="{{ $class }}" loading="lazy">
+  <figcaption class="esa-image-attribution">
+    {{ $metadata.title }} - Credit: {{ $metadata.credit }} | 
+    <a href="{{ $metadata.license_url }}" target="_blank" rel="license">CC BY 4.0</a>
+  </figcaption>
+</figure>

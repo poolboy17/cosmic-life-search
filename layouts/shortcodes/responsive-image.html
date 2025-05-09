@@ -1,0 +1,41 @@
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "Image" }}
+{{ $caption := .Get "caption" }}
+{{ $class := .Get "class" | default "" }}
+{{ $width := .Get "width" | default "1200" }}
+{{ $height := .Get "height" | default "800" }}
+{{ $lazy := .Get "lazy" | default "true" }}
+
+{{ $mobileSrc := .Get "mobile-src" | default $src }}
+{{ $tabletSrc := .Get "tablet-src" | default $src }}
+{{ $desktopSrc := $src }}
+
+<figure class="responsive-figure {{ $class }}">
+  <picture>
+    <!-- Mobile image source -->
+    <source 
+      media="(max-width: 576px)"
+      srcset="{{ $mobileSrc }}"
+      sizes="100vw">
+    
+    <!-- Tablet image source -->
+    <source 
+      media="(max-width: 992px)"
+      srcset="{{ $tabletSrc }}"
+      sizes="90vw">
+    
+    <!-- Desktop image - fallback -->
+    <img 
+      src="{{ $desktopSrc }}" 
+      alt="{{ $alt }}" 
+      width="{{ $width }}" 
+      height="{{ $height }}" 
+      class="img-fluid responsive-image" 
+      {{ if eq $lazy "true" }}loading="lazy"{{ else }}loading="eager"{{ end }}
+      sizes="(max-width: 576px) 100vw, (max-width: 992px) 90vw, 85vw">
+  </picture>
+  
+  {{ with $caption }}
+  <figcaption>{{ . }}</figcaption>
+  {{ end }}
+</figure>

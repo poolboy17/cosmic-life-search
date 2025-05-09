@@ -1,0 +1,119 @@
+{{ define "main" }}
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- Breadcrumbs with Schema.org markup -->
+      {{ partial "breadcrumbs.html" . }}
+      
+      <article 
+        itemscope 
+        itemtype="https://schema.org/BlogPosting"
+        style="-webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; text-rendering: optimizeLegibility !important;">
+        
+        <!-- Schema.org metadata -->
+        <meta itemprop="datePublished" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}" />
+        <meta itemprop="dateModified" content="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}" />
+        <meta itemprop="publisher" content="Cosmic Life Search" />
+        <meta itemprop="mainEntityOfPage" content="{{ .Permalink }}" />
+        {{ with .Description }}<meta itemprop="description" content="{{ . }}" />{{ end }}
+        <h1 class="post-title mb-4" itemprop="headline" style="color: #ffffff !important; font-weight: 700 !important; font-family: 'Space Grotesk', sans-serif !important;">{{ .Title }}</h1>
+        
+        <div class="post-meta mb-4" style="color: #e0e0e8 !important;">
+          <span><i class="bi bi-calendar"></i> {{ .Date.Format "Jan 2, 2006" }}</span>
+          {{ with .Params.categories }}
+          <span><i class="bi bi-folder"></i> 
+            {{ $length := len . }}
+            {{ range $index, $category := . }}
+            <a href="{{ printf "/categories/%s/" $category | urlize | relURL }}" style="color: #90caf9 !important;">{{ $category }}</a>{{ if ne (add $index 1) $length }}, {{ end }}
+            {{ end }}
+          </span>
+          {{ end }}
+        </div>
+        
+        {{ if .Params.image }}
+        <div class="post-featured-image mb-5">
+          <img 
+            itemprop="image"
+            src="{{ .Params.image }}" 
+            alt="{{ .Title }}" 
+            class="img-fluid featured-image"
+            loading="eager"
+            sizes="(max-width: 576px) 100vw, (max-width: 992px) 90vw, 75vw"
+            width="1200"
+            height="600"
+            style="filter: none !important; opacity: 1 !important; transition: none !important; transform: none !important; box-shadow: none !important; brightness: 100% !important; contrast: 100% !important; object-fit: contain !important;">
+        </div>
+        {{ end }}
+        
+        <div class="post-content" itemprop="articleBody" style="color: #ffffff !important; font-family: 'Inter', sans-serif !important; font-weight: 400 !important; -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important;">
+          {{ .Content }}
+
+          <!-- Inline style to ensure all generated content has proper text rendering -->
+          <style>
+            .post-content p, 
+            .post-content li, 
+            .post-content div, 
+            .post-content span {
+              color: #ffffff !important;
+              font-family: 'Inter', sans-serif !important;
+              -webkit-font-smoothing: antialiased !important;
+              -moz-osx-font-smoothing: grayscale !important;
+              text-rendering: optimizeLegibility !important;
+            }
+            
+            .post-content h1, 
+            .post-content h2, 
+            .post-content h3, 
+            .post-content h4, 
+            .post-content h5, 
+            .post-content h6 {
+              color: #ffffff !important;
+              font-family: 'Space Grotesk', sans-serif !important;
+              font-weight: 700 !important;
+              -webkit-font-smoothing: antialiased !important;
+              -moz-osx-font-smoothing: grayscale !important;
+              text-rendering: optimizeLegibility !important;
+            }
+          </style>
+        </div>
+        
+        {{ with .Params.tags }}
+        <div class="post-tags mt-5" style="color: #e0e0e8 !important;">
+          <span><i class="bi bi-tags"></i> Tags:</span>
+          {{ range $index, $tag := . }}
+          <a href="{{ printf "/tags/%s/" $tag | urlize | relURL }}" class="btn btn-sm btn-outline-secondary me-2" style="color: #ffffff !important;">{{ $tag }}</a>
+          {{ end }}
+        </div>
+        {{ end }}
+        
+        <!-- Author information for EEAT signals -->
+        {{ partial "author.html" . }}
+        
+        <div class="post-pagination mt-5 pt-5 border-top">
+          <div class="row">
+            <div class="col-6">
+              {{ if .PrevInSection }}
+              <a href="{{ .PrevInSection.RelPermalink }}" class="prev-post" style="color: #90caf9 !important;">
+                <span>← Previous</span>
+                <div>{{ .PrevInSection.Title }}</div>
+              </a>
+              {{ end }}
+            </div>
+            <div class="col-6 text-end">
+              {{ if .NextInSection }}
+              <a href="{{ .NextInSection.RelPermalink }}" class="next-post" style="color: #90caf9 !important;">
+                <span>Next →</span>
+                <div>{{ .NextInSection.Title }}</div>
+              </a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Related posts section -->
+        {{ partial "related-posts.html" . }}
+      </article>
+    </div>
+  </div>
+</div>
+{{ end }}

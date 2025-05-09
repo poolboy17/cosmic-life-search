@@ -1,0 +1,53 @@
+<!-- Related Posts Section with Schema.org markup -->
+<div class="related-posts mt-5 pt-5 border-top">
+  <h3 class="mb-4" style="color: #ffffff !important; font-weight: 700 !important; font-family: 'Space Grotesk', sans-serif !important;">You Might Also Like</h3>
+  
+  <div class="row" itemscope itemtype="https://schema.org/ItemList">
+    <meta itemprop="itemListOrder" content="Unordered" />
+    <meta itemprop="name" content="Related Articles" />
+    
+    {{ $related := .Site.RegularPages.Related . | first 3 }}
+    {{ if not $related }}
+      {{ $related = where (where .Site.RegularPages "Section" .Section) "Permalink" "!=" .Permalink | first 3 }}
+    {{ end }}
+    
+    {{ range $index, $post := $related }}
+    <div class="col-md-4 mb-4" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <meta itemprop="position" content="{{ add $index 1 }}" />
+      
+      <div class="card h-100" style="background-color: #14141f !important; border-color: #2a2a3a !important;">
+        {{ if $post.Params.image }}
+        <img 
+          src="{{ $post.Params.image }}" 
+          alt="{{ $post.Title }}" 
+          class="card-img-top" 
+          style="height: 150px; object-fit: cover;"
+          loading="lazy">
+        {{ else }}
+        <div class="card-img-top bg-dark" style="height: 150px;"></div>
+        {{ end }}
+        
+        <div class="card-body" style="color: #ffffff !important;">
+          <h5 class="card-title" style="color: #ffffff !important; font-family: 'Space Grotesk', sans-serif !important; font-weight: 700 !important;">
+            <a href="{{ $post.Permalink }}" itemprop="url" style="color: #90caf9 !important; text-decoration: none;">
+              <span itemprop="name">{{ $post.Title }}</span>
+            </a>
+          </h5>
+          
+          <p class="card-text" style="color: #e0e0e8 !important; font-family: 'Inter', sans-serif !important;">
+            {{ if $post.Description }}
+              {{ $post.Description | truncate 100 }}
+            {{ else }}
+              {{ $post.Summary | truncate 100 }}
+            {{ end }}
+          </p>
+        </div>
+        
+        <div class="card-footer" style="background-color: #1a1a2e !important; border-color: #2a2a3a !important;">
+          <small style="color: #e0e0e8 !important;">{{ $post.Date.Format "Jan 2, 2006" }}</small>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</div>

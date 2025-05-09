@@ -1,0 +1,33 @@
+# Hugo default output directory
+/public/
+/resources/
+/assets/jsconfig.json
+
+# Hugo generated files
+hugo_stats.json
+.hugo_build.lock
+
+# Temporary files
+*.log
+*.tmp
+.DS_Store
+*~
+\#*\#
+.\#*
+
+# Environment files
+.env
+.env.*
+
+# Node modules
+node_modules/
+
+# Build directories
+/dist/
+
+# Replit specific
+.replit
+replit.nix
+.cache/
+.config/
+.upm/

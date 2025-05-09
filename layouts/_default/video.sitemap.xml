@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+{{ range .Data.Pages }}
+  {{ if findRE `\{\{<\s*youtube\s+([^>]+)>}}` .Content 1 }}
+  <url>
+    <loc>{{ .Permalink }}</loc>
+    {{ $pattern := `\{\{<\s*youtube\s+([^ >"]+)(?:\s+"([^"]+)")?\s*>}}` }}
+    {{ $content := .Content }}
+    {{ range $index, $match := findRE $pattern .Content -1 }}
+      {{ $video_id := replaceRE $pattern "$1" $match }}
+      {{ $video_title := replaceRE $pattern "$2" $match }}
+      {{ if eq $video_title "" }}
+        {{ $video_title = $.Title }}
+      {{ end }}
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/{{ $video_id }}/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>{{ $video_title }}</video:title>
+      <video:description>{{ if .Description }}{{ .Description }}{{ else }}{{ .Summary }}{{ end }}</video:description>
+      <video:player_loc>https://www.youtube.com/embed/{{ $video_id }}</video:player_loc>
+      <video:content_loc>https://www.youtube.com/watch?v={{ $video_id }}</video:content_loc>
+      <video:publication_date>{{ .Date.Format "2006-01-02T15:04:05-07:00" }}</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:uploader info="https://www.youtube.com/channel/">Cosmic Life Search</video:uploader>
+      <video:live>no</video:live>
+    </video:video>
+    {{ end }}
+  </url>
+  {{ end }}
+{{ end }}
+</urlset>

@@ -1,0 +1,114 @@
+<!-- Custom head content for our site -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+<meta name="description" content="{{ .Description | default .Site.Params.description }}">
+<meta name="keywords" content="{{ .Keywords | default .Site.Params.keywords }}">
+
+    <!-- Robots Meta Tag -->
+    {{ if eq .Params.noindex true }}
+    <meta name="robots" content="noindex, nofollow">
+    {{ else if eq .Params.meta_robots "noindex, nofollow" }}
+    <meta name="robots" content="noindex, nofollow">
+    {{ else if eq .Layout "admin" }}
+    <meta name="robots" content="noindex, nofollow">
+    {{ else }}
+    <meta name="robots" content="index, follow">
+    {{ end }}
+    
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
+    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+    
+    <!-- Bootstrap CSS -->
+    {{ if .Site.Params.selfHosted }}
+    <link rel="stylesheet" href="{{ "vendor/bootstrap/css/bootstrap.min.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "vendor/bootstrap-icons/bootstrap-icons.css" | relURL }}">
+    {{ else }}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    {{ end }}
+    
+    <!-- Custom CSS -->
+    {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "style.main.scss" . | toCSS (dict "targetPath" "css/style.css" "outputStyle" "compressed") | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap">
+    
+    <!-- ESA Image Attribution Styles -->
+    <link rel="stylesheet" href="{{ "css/esa-attribution.css" | relURL }}">
+    
+    <!-- General Image Attribution Styles -->
+    <link rel="stylesheet" href="{{ "css/attribution.css" | relURL }}">
+    
+    <!-- Viator Button Styles -->
+    <link rel="stylesheet" href="{{ "css/viator-buttons.css" | relURL }}">
+    
+    <!-- Syntax highlighting -->
+    {{ if .Site.Params.useHLJS }}
+    <link rel="stylesheet" href="{{ "css/highlight.min.css" | relURL }}">
+    {{ end }}
+
+    <!-- Space Typography -->
+    <style>
+      h1, h2, h3, h4, h5, h6, .navbar-brand {
+        font-family: 'Space Grotesk', sans-serif;
+        font-display: swap;
+      }
+      
+      body, p, div, span, a, li {
+        font-family: 'Inter', sans-serif;
+        font-display: swap;
+      }
+      
+      /* Regular image rendering */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+    
+    <!-- Custom head -->
+    {{ partial "head_custom.html" . }}
+    
+    <!-- Feed -->
+    {{ range .AlternativeOutputFormats }}
+    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+    {{ end }}
+    
+    <!-- Schema.org structured data -->
+    {{ partial "schema.html" . }}
+    
+    <!-- SEO -->
+    <meta property="og:title" content="{{ .Title | default .Site.Title }}">
+    <meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ .Permalink }}">
+    
+    {{ if .Params.image }}
+    <meta property="og:image" content="{{ .Params.image | absURL }}">
+    {{ else if .Site.Params.ogImage }}
+    <meta property="og:image" content="{{ .Site.Params.ogImage | absURL }}">
+    {{ end }}
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ .Title | default .Site.Title }}">
+    <meta name="twitter:description" content="{{ .Description | default .Site.Params.description }}">
+    
+    {{ if .Params.image }}
+    <meta name="twitter:image" content="{{ .Params.image | absURL }}">
+    {{ else if .Site.Params.ogImage }}
+    <meta name="twitter:image" content="{{ .Site.Params.ogImage | absURL }}">
+    {{ end }}
+    
+    <!-- CSP Bypass for Development Environment -->
+    {{ if eq hugo.Environment "development" }}
+    <script src="{{ "js/disable-csp-checks.js" | relURL }}"></script>
+    {{ end }}
+    
+    <!-- Viator Link Handler -->
+    <script src="{{ "js/viator-link-handler.js" | relURL }}"></script>

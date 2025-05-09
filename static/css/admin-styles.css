@@ -1,0 +1,75 @@
+/* Admin Dashboard Styles - Clean and Simple */
+
+.admin-dashboard .card {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.admin-dashboard .card-header {
+  background-color: transparent;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.admin-dashboard .card-header h1 {
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  margin: 0;
+  font-size: 1.8rem;
+  color: #000000;
+}
+
+.admin-dashboard .card-body {
+  padding: 1.5rem;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.admin-dashboard .table {
+  margin-top: 1rem;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.admin-dashboard .table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333333;
+  border-bottom: 2px solid #dddddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.admin-dashboard .table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  border-top: 1px solid #dddddd;
+  color: #333333;
+}
+
+.admin-dashboard .table-hover tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.admin-dashboard .badge {
+  font-weight: normal;
+  padding: 0.3rem 0.5rem;
+  margin-right: 0.3rem;
+  font-size: 0.75rem;
+  border-radius: 3px;
+  background-color: #f0f0f0 !important;
+  color: #333333 !important;
+  border: 1px solid #dddddd;
+}
+
+.admin-dashboard a {
+  color: #0066cc;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.admin-dashboard a:hover {
+  text-decoration: underline;
+}

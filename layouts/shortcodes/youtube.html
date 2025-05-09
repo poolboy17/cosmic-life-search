@@ -1,0 +1,143 @@
+{{- /* YouTube lightweight embed with click-to-play functionality */ -}}
+{{- $videoID := .Get 0 -}}
+{{- $title := .Get 1 | default "Related video" -}}
+{{- $class := .Get 2 | default "mb-4" -}}
+
+<div class="youtube-embed-container {{ $class }}" id="youtube-container-{{ $videoID }}">
+  <div class="youtube-thumbnail-container position-relative">
+    <!-- Video title -->
+    <h5 class="youtube-title">{{ $title }}</h5>
+    
+    <!-- Clickable thumbnail image that loads the actual video when clicked -->
+    <div class="youtube-thumbnail position-relative rounded overflow-hidden">
+      <!-- High quality thumbnail -->
+      <img src="https://i.ytimg.com/vi/{{ $videoID }}/hqdefault.jpg" 
+           alt="{{ $title }}" 
+           class="img-fluid w-100"
+           loading="lazy">
+      
+      <!-- Play button overlay -->
+      <div class="youtube-play-button">
+        <svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%">
+          <path class="play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path>
+          <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Hidden iframe that will be shown on click (via JavaScript) -->
+    <div id="player-{{ $videoID }}" class="d-none">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" 
+                data-src="https://www.youtube.com/embed/{{ $videoID }}?autoplay=1&rel=0" 
+                title="{{ $title }}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Inline JavaScript to handle the click-to-play -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Use a unique identifier with the video ID to handle multiple videos on a page
+    const videoID = '{{ $videoID }}';
+    const container = document.getElementById('youtube-container-{{ $videoID }}');
+    if (!container) return;
+    
+    const thumbnail = container.querySelector('.youtube-thumbnail');
+    const player = document.getElementById('player-{{ $videoID }}');
+    const iframe = player.querySelector('iframe');
+    
+    thumbnail.addEventListener('click', function() {
+      // Set the actual src (it was in data-src to prevent loading)
+      iframe.src = iframe.getAttribute('data-src');
+      
+      // Hide thumbnail, show player
+      thumbnail.style.display = 'none';
+      player.classList.remove('d-none');
+      
+      // Log click for analytics (if needed)
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          'event': 'youtube_click',
+          'video_id': videoID
+        });
+      }
+    });
+  });
+</script>
+
+<!-- Custom CSS for YouTube thumbnails -->
+<style>
+  .youtube-thumbnail-container {
+    max-width: 100%;
+    margin-bottom: 2rem;
+    margin-top: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .youtube-title {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color, #e1e1e1);
+    padding: 0 0.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .youtube-thumbnail {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .youtube-thumbnail:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transition: background 0.3s ease;
+  }
+  
+  .youtube-thumbnail:hover:before {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .youtube-thumbnail:hover {
+    transform: scale(1.02);
+  }
+  
+  .youtube-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px;
+    height: 48px;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+    z-index: 2;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  }
+  
+  .youtube-thumbnail:hover .youtube-play-button {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  
+  .embed-responsive {
+    border-radius: 6px;
+    overflow: hidden;
+  }
+</style>

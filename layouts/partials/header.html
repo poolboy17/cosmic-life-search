@@ -1,0 +1,26 @@
+<header class="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <div class="logo">
+                <a href="{{ .Site.BaseURL }}">
+                    {{ if .Site.Params.logo }}
+                    <img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Site.Title }}" class="logo-img">
+                    {{ else }}
+                    <span class="logo-text">{{ .Site.Title }}</span>
+                    {{ end }}
+                </a>
+            </div>
+            
+            <!-- Navigation removed to prevent duplication - handled by nav.html -->
+            
+            <div class="header-actions">
+                {{ if .Site.Params.darkModeToggle }}
+                <button class="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="feather icon-moon moon-icon"></i>
+                    <i class="feather icon-sun sun-icon"></i>
+                </button>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,190 @@
+{{ if eq .Type "page" }}
+{{ partial "page_meta.html" . }}
+{{ end }}
+
+<footer class="cosmic-footer" role="contentinfo">
+  <div class="cosmic-footer-stars" style="pointer-events: none;"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 mb-4">
+        <h4 class="footer-heading">Cosmic Exploration</h4>
+        <ul class="footer-links" role="navigation" aria-label="Cosmic Exploration links">
+          <li><a href="/categories/exoplanets/">Exoplanets</a></li>
+          <li><a href="/categories/space/">Space Exploration</a></li>
+          <li><a href="/categories/astronomy/">Astronomical Discoveries</a></li>
+          <li><a href="/categories/seti/">SETI Research</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-md-3 mb-4">
+        <h4 class="footer-heading">Ancient Mysteries</h4>
+        <ul class="footer-links" role="navigation" aria-label="Ancient Mysteries links">
+          <li><a href="/categories/ancient-astronauts/">Ancient Astronauts</a></li>
+          <li><a href="/categories/archaeological-findings/">Archaeological Findings</a></li>
+          <li><a href="/categories/ancient-structures/">Megalithic Structures</a></li>
+          <li><a href="/categories/historical-analysis/">Historical Analysis</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-md-3 mb-4">
+        <h4 class="footer-heading">UFO Incidents</h4>
+        <ul class="footer-links" role="navigation" aria-label="UFO Incidents links">
+          <li><a href="/categories/ufo-incidents/">Famous Encounters</a></li>
+          <li><a href="/categories/government-disclosure/">Government Disclosure</a></li>
+          <li><a href="/categories/eyewitness-accounts/">Eyewitness Accounts</a></li>
+          <li><a href="/categories/analysis/">Scientific Analysis</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-md-3 mb-4">
+        <h4 class="footer-heading">Site Information</h4>
+        <ul class="footer-links" role="navigation" aria-label="Site Information links">
+          <li><a href="/sitemap/">Sitemap</a></li>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/blog/">All Articles</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+
+    <div class="row mt-4">
+      <div class="col-md-12 text-center">
+        <p class="copyright">
+          &copy; {{ now.Format "2006" }} Cosmic Life Search - All Rights Reserved
+        </p>
+        <nav class="footer-legal-links" role="navigation" aria-label="Legal Information">
+          <a href="/legal/privacy-policy/">Privacy Policy</a> | 
+          <a href="/legal/terms-of-service/">Terms of Service</a> | 
+          <a href="/legal/dmca-policy/">DMCA Policy</a> | 
+          <a href="/legal/accessibility/">Accessibility</a>
+        </nav>
+        <p class="tagline mt-2" aria-label="Site Tagline">
+          Exploring the mysteries of extraterrestrial life across space and time
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer-legal-links {
+  margin: 10px 0;
+  font-size: 0.85rem;
+}
+
+.footer-legal-links a {
+  color: #a9a9ff !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  margin: 0 5px;
+}
+
+.footer-legal-links a:hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+</style>
+
+<style>
+.cosmic-footer {
+  background: linear-gradient(to top, #000000, #080820);
+  padding: 3rem 0 2rem;
+  border-top: 1px solid rgba(100, 100, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.cosmic-footer-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+                    radial-gradient(1px 1px at 40px 70px, rgba(255, 255, 255, 0.3), transparent),
+                    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.3), transparent),
+                    radial-gradient(1px 1px at 160px 120px, rgba(255, 255, 255, 0.3), transparent);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.3;
+}
+
+.footer-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: #8e7aff !important;
+  font-size: 1.2rem;
+  letter-spacing: 0.03em;
+}
+
+.footer-links {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: #ccccff !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+  color: #ffffff !important;
+  transform: translateX(3px);
+  display: inline-block;
+}
+
+.footer-divider {
+  border-top: 1px solid rgba(100, 100, 255, 0.1);
+  margin: 2rem 0;
+}
+
+.copyright {
+  color: #8888aa !important;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  color: #6666aa !important;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .cosmic-footer {
+    padding: 2rem 0 1.5rem;
+  }
+  
+  .footer-heading {
+    margin-top: 1rem;
+  }
+}
+</style>
+
+{{- if .Site.Params.selfHosted -}}
+<script src="{{ "vendor/bootstrap/js/bootstrap.bundle.min.js" | absURL }}"></script>
+{{- else -}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+{{- end }}
+
+{{- if .Site.Params.useHLJS }}
+<script src="{{ "js/highlight.min.js" | absURL }}"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> 
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("pre.chroma").forEach(function (element) {
+    element.style.padding = "0";
+  });
+});
+</script>
+{{- end -}}
+
+{{- partial "footer_custom.html" . }}

@@ -1,0 +1,121 @@
+baseURL = "https://cosmiclifesearch.com/"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+title = "Cosmic Life Search"
+theme = "lightbi-hugo"
+
+# Enable syntax highlighting
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+# Enable emoji support
+enableEmoji = true
+
+# Taxonomies
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  author = "authors"
+
+# URL Management
+[permalinks]
+  blog = "/:section/:slug/"
+  categories = "/categories/:slug/"
+  tags = "/tags/:slug/"
+
+# Menu
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+  [[menu.main]]
+    name = "Exoplanets"
+    url = "/categories/exoplanets/"
+    weight = 3
+  [[menu.main]]
+    name = "Ancient Astronauts"
+    url = "/categories/ancient-astronauts/"
+    weight = 4
+  [[menu.main]]
+    name = "Famous Incidents"
+    url = "/categories/famous-incidents/"
+    weight = 5
+  [[menu.main]]
+    name = "Cosmic Wonders"
+    url = "/blog/cosmic-wonders-the-carina-nebula/"
+    weight = 6
+  [[menu.main]]
+    name = "Cosmic Tours"
+    url = "/cosmic-tours/"
+    weight = 7
+
+# Site parameters
+[params]
+  # Meta
+  description = "Exploring the mysteries of extraterrestrial life - from exoplanets to ancient astronaut theories"
+  keywords = "extraterrestrial life, exoplanets, alien, ancient astronauts, roswell, UFO, cosmic, space exploration, SETI"
+  author = "Cosmic Life Search"
+  
+  # Theme features
+  mainSections = ["blog"]
+  showAuthorOnPosts = true
+  showDateOnPosts = true
+  showTags = true
+  showCategories = true
+  
+  # Header
+  logo = "/images/logo.svg"
+  
+  # Footer
+  copyright = "© 2025 Cosmic Life Search. All rights reserved."
+  
+  # Social links are disabled as the site doesn't have social media accounts
+
+# Sitemap Configuration
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+# Output formats including XML sitemap
+[outputs]
+  home = ["HTML", "RSS", "JSON", "SITEMAP", "VIDEOMAP"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+
+[outputFormats]
+  [outputFormats.SITEMAP]
+    mediaType = "application/xml"
+    baseName = "sitemap"
+    isHTML = false
+    isPlainText = false
+    noUgly = true
+    rel = "sitemap"
+  [outputFormats.VIDEOMAP]
+    mediaType = "application/xml"
+    baseName = "video-sitemap"
+    isHTML = false
+    isPlainText = false
+    noUgly = true
+    rel = "sitemap"
+
+# Privacy settings
+[privacy]
+  [privacy.disqus]
+    disable = true
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.instagram]
+    disable = true
+  [privacy.twitter]
+    disable = true
+  [privacy.vimeo]
+    disable = true
+  [privacy.youtube]
+    disable = true

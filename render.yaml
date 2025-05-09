@@ -1,0 +1,57 @@
+
+services:
+  - type: web
+    name: cosmic-life-search
+    env: static
+    buildCommand: ./build.sh
+    staticPublishDir: public
+    branch: main
+    autoDeploy: true
+    envVars:
+      - key: HUGO_VERSION
+        value: 0.126.1
+      - key: HUGO_ENV
+        value: production
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-XSS-Protection
+        value: 1; mode=block
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
+      - path: /*
+        name: Content-Security-Policy
+        value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com; font-src 'self'; object-src 'none'; form-action 'self' https://*.viator.com https://viator.com; frame-src 'self' https://www.youtube.com"
+      - path: /*.css
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*.js
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*.jpg
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*.png
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*.svg
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*.woff
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*.woff2
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /static/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable

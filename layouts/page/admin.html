@@ -1,0 +1,54 @@
+{{ define "head" }}
+<link rel="stylesheet" href="/css/admin-styles.css">
+<meta name="robots" content="noindex, nofollow">
+{{ end }}
+
+{{ define "main" }}
+<div class="container py-5 admin-dashboard">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h1>{{ .Title }}</h1>
+        </div>
+        <div class="card-body">
+          {{ .Content }}
+          
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Categories</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{ $counter := 0 }}
+                {{ range (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
+                {{ $counter = add $counter 1 }}
+                <tr>
+                  <td>{{ $counter }}</td>
+                  <td><a href="{{ .RelPermalink }}" target="_blank">{{ .Title }}</a></td>
+                  <td>{{ .Date.Format "2006-01-02" }}</td>
+                  <td>
+                    {{ range .Params.categories }}
+                    <span class="badge">{{ . }}</span>
+                    {{ end }}
+                  </td>
+                </tr>
+                {{ end }}
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="mt-4">
+            <p><strong>Total Posts:</strong> {{ len (where .Site.RegularPages "Section" "blog") }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

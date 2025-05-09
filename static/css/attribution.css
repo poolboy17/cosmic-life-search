@@ -1,0 +1,123 @@
+/* 
+ * Image Attribution Styling
+ * Provides styling for image attribution displays throughout the site
+ */
+
+.image-attribution {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: rgba(20, 20, 30, 0.7);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.image-preview {
+  flex: 0 0 120px;
+  margin-right: 15px;
+}
+
+.attribution-thumbnail {
+  width: 100%;
+  height: auto;
+  max-height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.attribution-details {
+  flex: 1;
+  min-width: 200px;
+}
+
+.attribution-details h4 {
+  margin: 0 0 8px 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: #e1e1ff;
+}
+
+.attribution-details p {
+  margin: 0;
+  line-height: 1.4;
+  color: #c5c5c5;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.attribution-details a {
+  color: #8e9aff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.attribution-details a:hover {
+  color: #b8c0ff;
+  text-decoration: underline;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.image-attributions {
+  margin: 30px 0;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(20, 20, 30, 0.7);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.image-attributions h2 {
+  margin-top: 0;
+  color: #e1e1ff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
+}
+
+.image-attributions p {
+  color: #c5c5c5;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.image-attributions ul {
+  padding-left: 20px;
+}
+
+.image-attributions li {
+  margin-bottom: 12px;
+  color: #c5c5c5;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .image-attribution {
+    flex-direction: column;
+  }
+  
+  .image-preview {
+    margin-right: 0;
+    margin-bottom: 15px;
+    flex: 0 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .attribution-thumbnail {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  
+  .attribution-details {
+    width: 100%;
+  }
+}

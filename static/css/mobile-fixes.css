@@ -1,0 +1,87 @@
+/* Mobile-specific fixes for Cosmic Life Search */
+
+/* Fix spacing issues on mobile */
+@media (max-width: 576px) {
+  /* Add more specific selectors to increase specificity */
+  /* Add padding to top for fixed navbar */
+  body.cosmic-theme {
+    padding-top: 70px;
+  }
+  
+  /* Fix navbar position */
+  .navbar.cosmic-navbar, 
+  .cosmic-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+  }
+  
+  /* Ensure cards stack properly */
+  .cosmic-theme .card,
+  .cosmic-theme .post-card {
+    margin-bottom: 20px;
+  }
+  
+  /* Fix category badges display on mobile */
+  .cosmic-theme .post-meta,
+  .cosmic-theme .post-categories,
+  .cosmic-theme .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  
+  /* Adjust container padding */
+  .cosmic-theme .container,
+  .cosmic-theme .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Ensure images don't overflow on mobile */
+  .cosmic-theme img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Fix overflow issues */
+  html.cosmic-theme, 
+  body.cosmic-theme {
+    overflow-x: hidden;
+  }
+  
+  /* Improve readability of text */
+  .cosmic-theme p, 
+  .cosmic-theme li {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* Better headings for mobile */
+  .cosmic-theme h1 {
+    font-size: 1.8rem;
+  }
+  
+  .cosmic-theme h2 {
+    font-size: 1.5rem;
+  }
+  
+  .cosmic-theme h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Tablet-specific fixes */
+@media (min-width: 577px) and (max-width: 992px) {
+  /* Increased specificity for better override without !important */
+  body.cosmic-theme {
+    padding-top: 80px;
+  }
+  
+  .cosmic-theme .container,
+  .cosmic-theme .container-fluid {
+    max-width: 95%;
+  }
+}

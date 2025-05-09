@@ -1,0 +1,164 @@
+<!-- Custom meta tags for better SEO -->
+<meta name="description" content="{{ .Description | default .Site.Params.description }}">
+<meta name="keywords" content="{{ .Site.Params.keywords }}">
+<meta name="author" content="{{ .Site.Params.author }}">
+
+<!-- Additional accessibility improvements -->
+{{ if .IsPage }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ end }}
+
+<!-- Additional OpenGraph tags -->
+<meta property="og:site_name" content="{{ .Site.Title }}">
+{{ if .IsPage }}
+<meta property="og:published_time" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}">
+<meta property="og:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}">
+{{ end }}
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="{{ .Site.Params.twitter | default "@cosmiclifesearch" }}">
+<meta name="twitter:creator" content="{{ .Site.Params.twitter | default "@cosmiclifesearch" }}">
+
+<!-- Structured data (JSON-LD) for better SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ if .IsPage }}Article{{ else }}WebSite{{ end }}",
+  "name": "{{ .Title }}",
+  "headline": "{{ .Title }}",
+  "description": "{{ .Description | default .Site.Params.description }}",
+  "url": "{{ .Permalink }}",
+  {{ if .IsPage }}
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05-07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Params.author | default .Site.Params.author }}"
+  },
+  {{ end }}
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.Params.logo | absURL }}"
+    }
+  }
+}
+</script>
+
+<!-- Accessibility and style improvements -->
+<link rel="stylesheet" href="/css/accessibility.css">
+<link rel="stylesheet" href="/css/mobile-fixes.css">
+<link rel="stylesheet" href="/css/navigation-fixes.css">
+<link rel="stylesheet" href="/css/text-rendering-fixes.css">
+<!-- Dark theme CSS -->
+<link rel="stylesheet" href="/css/cosmic-dark.css">
+<!-- Critical font rendering override - loads last to take precedence -->
+<link rel="stylesheet" href="/css/font-fix-override.css">
+
+<!-- Enhanced font loading optimization -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+
+<!-- Prevent font flickering/FOIT with font display CSS -->
+<style>
+  /* Optimize font loading and prevent text flashing */
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Inter Regular'), local('Inter-Regular');
+  }
+  
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Space Grotesk Bold'), local('SpaceGrotesk-Bold');
+  }
+</style>
+
+<!-- Responsive viewport configuration -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+<!-- Absolute final text rendering override -->
+<style>
+  /* Ultra-high specificity selectors to force proper text rendering */
+  html.dark-theme body.dark-mode main article .post-content p,
+  html.dark-theme body.dark-mode main article .post-content li,
+  html.dark-theme body.dark-mode main article .post-content div,
+  html.dark-theme body.dark-mode main .post-content h1,
+  html.dark-theme body.dark-mode main .post-content h2,
+  html.dark-theme body.dark-mode main .post-content h3,
+  html.dark-theme body.dark-mode main .post-content h4,
+  html.dark-theme body.dark-mode main .post-content h5,
+  html.dark-theme body.dark-mode main .post-content h6,
+  html.dark-theme body.dark-mode .post-card .card-title,
+  html.dark-theme body.dark-mode .post-card .post-title,
+  html.dark-theme body.dark-mode .post-card .post-summary {
+    color: #ffffff !important;
+    text-shadow: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+  }
+  
+  /* Ensure font weights are correct */
+  html.dark-theme body.dark-mode main .post-content h1,
+  html.dark-theme body.dark-mode main .post-content h2,
+  html.dark-theme body.dark-mode main .post-content h3 {
+    font-weight: 700 !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+  }
+  
+  /* Ensure body text is properly rendered */
+  html.dark-theme body.dark-mode main article .post-content p,
+  html.dark-theme body.dark-mode main article .post-content li {
+    font-weight: 400 !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+  
+  /* Fix black text on black background for code blocks */
+  html.dark-theme body.dark-mode pre,
+  html.dark-theme body.dark-mode code,
+  html.dark-theme body.dark-mode .post-content pre,
+  html.dark-theme body.dark-mode .post-content code {
+    background-color: #1a1a2e !important;
+    color: #f0f0f0 !important;
+    border: 1px solid #2c2c54 !important;
+    text-shadow: none !important;
+  }
+  
+  /* Fix black text on black background for tables */
+  html.dark-theme body.dark-mode table,
+  html.dark-theme body.dark-mode .post-content table {
+    color: #ffffff !important;
+    background-color: transparent !important;
+  }
+  
+  html.dark-theme body.dark-mode th,
+  html.dark-theme body.dark-mode .post-content th {
+    background-color: #1a237e !important;
+    color: #ffffff !important;
+    border: 1px solid #3f51b5 !important;
+  }
+  
+  html.dark-theme body.dark-mode td,
+  html.dark-theme body.dark-mode .post-content td {
+    color: #ffffff !important;
+    border: 1px solid #3f51b5 !important;
+    background-color: #121236 !important;
+  }
+  
+  html.dark-theme body.dark-mode tr:nth-child(even) td,
+  html.dark-theme body.dark-mode .post-content tr:nth-child(even) td {
+    background-color: #0a0a20 !important;
+  }
+</style>

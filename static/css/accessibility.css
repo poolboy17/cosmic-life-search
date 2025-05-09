@@ -1,0 +1,208 @@
+/* 
+ * Cosmic Life Search - Accessibility Enhancements 
+ * This file provides additional CSS rules to improve accessibility
+ */
+
+/* Hide content visually but keep it accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for better keyboard navigation with more specific selectors instead of !important */
+html body *:focus {
+  outline: 3px solid #90caf9;
+  outline-offset: 2px;
+}
+
+/* Skip to content link - hidden by default, visible on focus with reasonable z-index */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  /* Reduced from 9999 to a more reasonable value while still keeping it above most elements */
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Increase contrast for text elements when needed with higher specificity instead of !important */
+body .high-contrast {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+/* ARIA specific styles */
+[role="button"],
+[role="tab"],
+[role="link"] {
+  cursor: pointer;
+}
+
+/* Using attribute selector with higher specificity for aria-hidden elements */
+html body [aria-hidden="true"] {
+  display: none;
+}
+
+/* Improve form accessibility with higher specificity */
+html body input:focus, 
+html body select:focus, 
+html body textarea:focus, 
+html body button:focus {
+  outline: 3px solid #90caf9;
+  outline-offset: 2px;
+}
+
+/* Increase text spacing for readability with higher specificity */
+html body .readable-text {
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  word-spacing: 0.05em;
+}
+
+/* Custom focus indicators for dark theme with higher specificity */
+html.dark-theme *:focus,
+body.dark-mode *:focus {
+  outline-color: #bd4be5;
+}
+
+/* Ensure color contrast for links with higher specificity */
+html body a:not(.btn) {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 0.05em;
+}
+
+/* Ensure appropriate heading hierarchy spacing with higher specificity */
+html body h2 {
+  margin-top: 1.5em;
+}
+
+html body h3 {
+  margin-top: 1.2em;
+}
+
+/* Ensure buttons have enough padding for touch targets with higher specificity */
+html body .btn, 
+html body button,
+html body [role="button"] {
+  padding: 0.5em 1em;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Improve table accessibility - these don't need !important anyway */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  font-weight: bold;
+}
+
+th, td {
+  padding: 0.75em;
+  border: 1px solid #333399;
+}
+
+/* Ensure visible focus on interactive elements with higher specificity */
+html body .nav-link:focus,
+html body .navbar-brand:focus,
+html body .btn:focus,
+html body a:focus {
+  outline: 3px solid #bd4be5;
+  outline-offset: 3px;
+}
+
+/* Add responsive media queries for better accessibility on different devices */
+@media screen and (max-width: 768px) {
+  /* Increase touch target sizes on mobile */
+  html body .btn, 
+  html body button,
+  html body [role="button"],
+  html body .nav-link,
+  html body a.navbar-brand {
+    padding: 0.6em 1.2em;
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* Increase font sizes for better readability on small screens */
+  html body {
+    font-size: 16px;
+  }
+  
+  /* Adjust focus outlines to be more visible on mobile */
+  html body *:focus {
+    outline-width: 4px;
+  }
+  
+  /* Make tables responsive */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  tr {
+    margin-bottom: 1em;
+    border: 1px solid #333399;
+  }
+  
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+  
+  td:before {
+    position: absolute;
+    top: 0.75em;
+    left: 0.75em;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    content: attr(data-label);
+    font-weight: bold;
+  }
+}
+
+/* High contrast mode improvements for users with visual impairments */
+@media (prefers-contrast: more) {
+  html body {
+    color: #000000;
+    background-color: #ffffff;
+  }
+  
+  html body a {
+    color: #0000EE;
+  }
+  
+  html body a:visited {
+    color: #551A8B;
+  }
+  
+  html body *:focus {
+    outline: 4px solid #000000;
+  }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}" data-theme="dark" class="dark-theme" itemscope itemtype="http://schema.org/WebPage" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+  <head>
+    {{ partial "head.html" . }}
+    <!-- Critical font rendering styles in <head> -->
+    <style>
+      /* Critical rendering styles applied to full page */
+      html, body {
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+        text-rendering: optimizeLegibility !important;
+      }
+      body {
+        background-color: #000000;
+        color: #ffffff;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        color: #ffffff;
+      }
+      p, li, div, span {
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        color: #ffffff;
+      }
+      .post-title, .card-title, .post-content {
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body class="dark-mode cosmic-theme" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; background-color: #000000; color: #ffffff;">
+    <script>
+      // Immediate dark mode application before any rendering
+      document.documentElement.classList.add('dark-theme');
+      document.body.classList.add('dark-mode', 'cosmic-theme');
+      document.body.style.backgroundColor = "#000000";
+      document.body.style.color = "#ffffff";
+      document.body.style.webkitFontSmoothing = "antialiased";
+      document.body.style.mozOsxFontSmoothing = "grayscale";
+      document.body.style.textRendering = "optimizeLegibility";
+    </script>
+    
+    {{ partial "nav.html" . }}
+    <header role="banner">
+      {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
+    </header>
+    
+    <main id="main-content" role="main">
+      {{ block "main" . }}{{ end }}
+    </main>
+    
+    <footer role="contentinfo">
+      {{ partial "footer.html" . }}
+    </footer>
+    
+    {{ block "footer" . }}{{ end }}
+    
+    <!-- Accessibility enhancement - Skip to content link -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
+    <!-- Dark mode toggle -->
+  </body>
+</html>

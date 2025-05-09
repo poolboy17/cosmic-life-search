@@ -1,0 +1,15 @@
+# Enforce HTTPS
+http://* https://:host:path:port/:splat 301!
+
+# Redirect default Render subdomain to primary domain
+https://cosmic-life-search.onrender.com/* https://cosmiclifesearch.com/:splat 301!
+
+# Redirect www version to non-www
+https://www.cosmiclifesearch.com/* https://cosmiclifesearch.com/:splat 301!
+
+# Handle 404
+/* /404.html 404
+
+# Ensure sitemap routing (although this should be automatic)
+/sitemap.xml /sitemap.xml 200
+/video-sitemap.xml /video-sitemap.xml 200

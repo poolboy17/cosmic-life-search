@@ -1,0 +1,15 @@
+.esa-image-figure {
+  margin-bottom: 1.5rem;
+}
+
+.esa-image-attribution {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.esa-image-attribution a {
+  color: #3f51b5;
+  text-decoration: underline;
+}

@@ -1,0 +1,141 @@
+/* 
+ * Text Rendering Fixes for Cosmic Life Search
+ * Ensures crisp, clean typography across browsers
+ */
+
+/* Core text rendering improvements for all browsers */
+html, body {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+  font-smooth: always;
+}
+
+/* Font sharpness fixes for specific browsers */
+@-moz-document url-prefix() {
+  body, p, li, div, span {
+    font-weight: normal !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700 !important;
+  }
+}
+
+/* Microsoft Edge and Chrome-specific rendering */
+@supports (-webkit-appearance:none) {
+  body {
+    text-shadow: none !important;
+  }
+}
+
+/* Ensure text is pure white in dark mode, not gray */
+.dark-mode p,
+.dark-mode li,
+.dark-mode span,
+.dark-mode .post-content,
+.dark-mode .post-summary,
+.dark-mode article {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Ensure headings are true white with slight optimization for readability */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode .section-title {
+  color: #ffffff !important;
+  letter-spacing: -0.01em;
+  font-weight: 700 !important;
+}
+
+/* Improved card text contrast */
+.dark-mode .card,
+.dark-mode .post-card {
+  color: #ffffff !important;
+}
+
+.dark-mode .card-title,
+.dark-mode .post-title a {
+  color: #ffffff !important;
+  letter-spacing: -0.01em;
+}
+
+.dark-mode .card-text,
+.dark-mode .post-summary {
+  color: #ffffff !important;
+}
+
+/* Crisp text in navigation */
+.dark-mode .navbar-nav .nav-link,
+.dark-mode .cosmic-navbar .nav-link {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* Improve paragraph contrast */
+.dark-mode p {
+  margin-bottom: 1.2em;
+  line-height: 1.6;
+}
+
+/* Fix list item contrast */
+.dark-mode li {
+  margin-bottom: 0.5em;
+}
+
+/* Remove any text opacity/transparency effects */
+.dark-mode .text-muted,
+.dark-mode .text-secondary,
+.dark-mode small {
+  color: #e0e0e8 !important;
+  opacity: 1 !important;
+}
+
+/* Optimize font weights */
+.dark-mode h1 { font-weight: 700 !important; }
+.dark-mode h2 { font-weight: 700 !important; }
+.dark-mode h3 { font-weight: 700 !important; }
+.dark-mode h4 { font-weight: 600 !important; }
+.dark-mode h5 { font-weight: 600 !important; }
+.dark-mode h6 { font-weight: 600 !important; }
+
+/* Ensure links are highly visible */
+.dark-mode a {
+  color: #90caf9 !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.dark-mode a:hover {
+  color: #bbdefb !important;
+  text-decoration: underline;
+}
+
+/* Optimized Space Grotesk headings */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode .navbar-brand {
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-display: swap;
+}
+
+/* Optimized Inter body text */
+.dark-mode body,
+.dark-mode p,
+.dark-mode div,
+.dark-mode span,
+.dark-mode a,
+.dark-mode li {
+  font-family: 'Inter', sans-serif !important;
+  font-display: swap;
+}

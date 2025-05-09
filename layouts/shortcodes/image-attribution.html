@@ -1,0 +1,45 @@
+{{/* Image Attribution Shortcode 
+  This shortcode displays proper attribution for images used in posts.
+  
+  Parameters:
+    - src: Image source URL or filename (required)
+    - title: Title of the image (optional)
+    - source: Source of the image (e.g., NASA, ESA, etc.) (required)
+    - license: License under which the image is used (required)
+    - attribution: Attribution text for the image (required)
+    - sourceUrl: URL to the original source (optional)
+    - licenseUrl: URL to the license text (optional)
+    
+  Example usage:
+  {{< image-attribution 
+      src="/images/specialized/galaxy_example.jpg" 
+      title="Andromeda Galaxy" 
+      source="NASA" 
+      license="Public Domain" 
+      attribution="NASA/JPL-Caltech" 
+      sourceUrl="https://nasa.gov/image/..."
+  >}}
+*/}}
+
+{{ $src := .Get "src" }}
+{{ $title := .Get "title" | default "Cosmic Image" }}
+{{ $source := .Get "source" | default "Unknown Source" }}
+{{ $license := .Get "license" | default "Unknown License" }}
+{{ $attribution := .Get "attribution" | default "Unknown" }}
+{{ $sourceUrl := .Get "sourceUrl" }}
+{{ $licenseUrl := .Get "licenseUrl" | default "https://creativecommons.org/licenses/by/4.0/" }}
+
+<div class="image-attribution">
+  <div class="image-preview">
+    <img src="{{ $src }}" alt="{{ $title }}" class="attribution-thumbnail">
+  </div>
+  <div class="attribution-details">
+    <h4>{{ $title }}</h4>
+    <p>
+      Source: {{ if $sourceUrl }}<a href="{{ $sourceUrl }}" target="_blank" rel="noopener">{{ $source }}</a>{{ else }}{{ $source }}{{ end }}<br>
+      License: {{ if $licenseUrl }}<a href="{{ $licenseUrl }}" target="_blank" rel="noopener">{{ $license }}</a>{{ else }}{{ $license }}{{ end }}<br>
+      Attribution: {{ $attribution }}
+    </p>
+  </div>
+  <div class="clearfix"></div>
+</div>
